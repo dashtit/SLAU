@@ -12,21 +12,17 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form2 : Form
+    public partial class Form2 : Form //это код втрой формы
     {
-        public float[,] Matrix;
-        public float E;
-        public Form2(Form1 form)
+        public float[,] Matrix; // создаем матрицу
+        public float E; //и переменную отвечающую за точность
+        public Form2(Form1 form) //контруктор формы2 здесь мы инициализируем матрицу значениями из текстбоксов формы1 которую передали в параметр конструктора
         {
   
         InitializeComponent();
-            Matrix = new float[3, 4]
-                      {
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      {0, 0, 0, 0},
-                      };
-            Matrix[0, 0] = float.Parse(form.textBox1.Text);
+            Matrix = new float[3, 4]; // матрица 3х4
+                      
+            Matrix[0, 0] = float.Parse(form.textBox1.Text); //в каждый элемент матрицы запихиваем значение из текстобкса
             Matrix[0, 1] = float.Parse(form.textBox2.Text);
             Matrix[0, 2] = float.Parse(form.textBox3.Text);
             Matrix[0, 3] = float.Parse(form.textBox4.Text);
@@ -43,12 +39,12 @@ namespace WindowsFormsApp1
 
         private void label2_Click(object sender, EventArgs e)
         {
-            SLAU Matr = new SLAU(Matrix, E);
+            SLAU Matr = new SLAU(Matrix, E); //тут создаем объект класса СЛАУ где будет считаться система и передаем туда нашу матрицу и точность
 
-            float[] x = Matr.MethZeygAndIter('i');
-            for (int i = 0; i < x.Length; i++)
+            float[] x = Matr.MethZeygAndIter('i'); // вызываем функцию которая будет считать методом итераций и передаем флаг i чтобы обозначить метод итераций
+            for (int i = 0; i < x.Length; i++) // это цикл вывода полученных ответов на форму 2
             {
-               label3.Text = (x[0].ToString());
+               label3.Text = (x[0].ToString()); // в каждйы лэйбл засовываем наш ответ
                label4.Text = (x[1].ToString());
                label5.Text = (x[2].ToString());
             }

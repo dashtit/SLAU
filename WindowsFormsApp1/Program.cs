@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main() // точка входа
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

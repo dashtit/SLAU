@@ -9,44 +9,44 @@ namespace MethodsSLAU
 {
     class SLAU
     {
-        private float[,] Matrix;
-        public float E;
+        private float[,] Matrix; // наша матрица 
+        public float E; // точность
 
         //Конструкторы
-        public SLAU(float[,] matr, float e)
+        public SLAU(float[,] matr, float e) // контруктор в который передали матрицу и точность которые мы ввели
         {
 
-            Matrix =  matr;
+            Matrix =  matr; // присваиваем значения матрицы и точности для этого класса
             E = e;
 
         }
-        public SLAU(ushort RowCol)
-        {
-            Matrix = new float[RowCol, RowCol + 1];
-            for (int i = 0; i < RowCol; i++)
-            {
-                for (int j = 0; j < RowCol + 1; j++)
-                {
-                    Console.Write((j < RowCol) ? "M[{0}, {1}] = " : "MResult[{0}, {1}] = ", i + 1, j + 1);
-                    Matrix[i, j] = Convert.ToSingle(Console.ReadLine());
-                }
-            }
-        }
+        //public SLAU(ushort RowCol) 
+        //{
+        //    Matrix = new float[RowCol, RowCol + 1];
+        //    for (int i = 0; i < RowCol; i++)
+        //    {
+        //        for (int j = 0; j < RowCol + 1; j++)
+        //        {
+        //            Console.Write((j < RowCol) ? "M[{0}, {1}] = " : "MResult[{0}, {1}] = ", i + 1, j + 1);
+        //            Matrix[i, j] = Convert.ToSingle(Console.ReadLine());
+        //        }
+        //    }
+        //}
 
 
         //Метод приближенного решения
-        public float[] MethZeygAndIter(char flag)
+        public float[] MethZeygAndIter(char flag) // этот метод считает методом простых итераций 
         {
             
-            float[] Xnew = new float[Matrix.GetLength(0)],
+            float[] Xnew = new float[Matrix.GetLength(0)], // создаем новуб матрицу с такой же длиной что и та которая на входе
                     Xold = new float[Xnew.Length];
 
             do
             {
-                Xnew.CopyTo(Xold, 0);
+                Xnew.CopyTo(Xold, 0); // копируем значения
 
-                for (int i = 0; i < Xnew.Length; i++)
-                    if (flag == 'i')
+                for (int i = 0; i < Xnew.Length; i++) // зацикливаем для каждого элемента и отправляем считать в метод elX 
+                    if (flag == 'i') 
                     {
                         Xnew[i] = elX(Xold, i) / Matrix[i, i];
                     }
